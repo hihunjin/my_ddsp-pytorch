@@ -78,16 +78,16 @@ class LoudnessExtractor(nn.Module):
         sliced_signal = paded_input_signal.unfold(1, self.n_fft, self.frame_length)     # torch.Size([1, 250, 320])
         sliced_windowed_signal = sliced_signal * self.smoothing_window                  # torch.Size([1, 250, 320])
         
-        SLICED_SIGNAL = torch.rfft(sliced_windowed_signal, 1, onesided = False)
+        SLICED_SIGNAL = torch.rfft(sliced_windowed_signal, 1, onesided = False)                                         # torch.Size([1, 250, 320, 2])
         
-        SLICED_SIGNAL_LOUDNESS_SPECTRUM = torch.zeros(SLICED_SIGNAL.shape[:-1])
-        SLICED_SIGNAL_LOUDNESS_SPECTRUM = SLICED_SIGNAL[:, :, :, 0] ** 2 + SLICED_SIGNAL[:, :, :, 1] ** 2
+        SLICED_SIGNAL_LOUDNESS_SPECTRUM = torch.zeros(SLICED_SIGNAL.shape[:-1])                                         # torch.Size([1, 250, 320, 2])
+        SLICED_SIGNAL_LOUDNESS_SPECTRUM = SLICED_SIGNAL[:, :, :, 0] ** 2 + SLICED_SIGNAL[:, :, :, 1] ** 2               # torch.Size([1, 250, 320])
                 
         freq_bin_size = self.sr / self.n_fft
         FREQUENCIES = torch.tensor([(freq_bin_size * i) % (0.5 * self.sr) for i in range(self.n_fft)]).to(self.device)
-        A_WEIGHTS = self.torch_A_weighting(FREQUENCIES)
+        A_WEIGHTS = self.torch_A_weighting(FREQUENCIES)                                                                 # torch.Size([320])
         
-        A_WEIGHTED_SLICED_SIGNAL_LOUDNESS_SPECTRUM = SLICED_SIGNAL_LOUDNESS_SPECTRUM * A_WEIGHTS
-        A_WEIGHTED_SLICED_SIGNAL_LOUDNESS = torch.sqrt(torch.sum(A_WEIGHTED_SLICED_SIGNAL_LOUDNESS_SPECTRUM, 2)) / self.n_fft * self.attenuate_gain
+        A_WEIGHTED_SLICED_SIGNAL_LOUDNESS_SPECTRUM = SLICED_SIGNAL_LOUDNESS_SPECTRUM * A_WEIGHTS                        # torch.Size([1, 250, 320])
+        A_WEIGHTED_SLICED_SIGNAL_LOUDNESS = torch.sqrt(torch.sum(A_WEIGHTED_SLICED_SIGNAL_LOUDNESS_SPECTRUM, 2)) / self.n_fft * self.attenuate_gain     # torch.Size([1, 250])
         
         return A_WEIGHTED_SLICED_SIGNAL_LOUDNESS
