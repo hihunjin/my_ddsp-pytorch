@@ -53,6 +53,7 @@ class TrainableFIRReverb(nn.Module):
         zero_pad_input_signal = nn.functional.pad(input_signal, (0, self.fir.shape[-1] - 1))
 #         INPUT_SIGNAL = torch.rfft(zero_pad_input_signal, 1)
         INPUT_SIGNAL = torch.fft.rfft(zero_pad_input_signal)
+        INPUT_SIGNAL = torch.view_as_real(INPUT_SIGNAL)
 
         # Build decaying impulse response and send it to frequency domain.
         # Appropriate zero padding is required for linear convolution.
