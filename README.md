@@ -57,7 +57,7 @@ python test.py\
 ```
 
 ```bash
-cd train;python test.py  --input ../magenta_mine_original.wav --output output.wav --ckpt ../weight/200220.pth --config ../weight/200220.pth.yaml --wave_length 16000
+cd train;python test.py  --input ../magenta_mine_original.wav --output output.wav --ckpt ../weight/200220.pth --config ../weight/200220.pth.yaml
 ```
 
 ## Download pretrained weight file ###
