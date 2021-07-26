@@ -94,7 +94,8 @@ class TrainableFIRReverb(nn.Module):
         )
 
 #         output_signal = torch.irfft(OUTPUT_SIGNAL, 1)
-        output_signal = torch.fft.irfft(OUTPUT_SIGNAL)
+        OUTPUT_SIGNAL = torch.view_as_complex(OUTPUT_SIGNAL)
+        output_signal = torch.fft.irfft(OUTPUT_SIGNAL, n=OUTPUT_SIGNAL.size(1) * 2 - 1)
         
 
         return output_signal
