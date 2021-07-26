@@ -23,7 +23,9 @@ from optimizer.radam import RAdam
 $ python train.py --batch_size 64 --lr 0.01 --use_reverb
 """
 
-config = setup(default_config="../configs/violin.yaml")
+yaml_path = "../configs/bird.yaml"         # ../configs/violin.yaml | ../configs/bird.yaml
+
+config = setup(default_config= yaml_path)
 # config = setup(pdb_on_error=True, trace=False, autolog=False, default_config=dict(
 #     # general config
 #     ckpt="../../ddsp_ckpt/violin/200131.pth",  # checkpoint
