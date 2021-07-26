@@ -1,6 +1,5 @@
 batch_size: 64
 bidirectional: false
-ckpt: ../weight/200220.pth
 crepe: full
 experiment_name: DDSP_violin
 f0_threshold: 0.5
