@@ -53,6 +53,7 @@ class FilteredNoise(nn.Module):
         zero_paded_windowed_linear_phase_ir_bank = nn.functional.pad(windowed_linear_phase_ir_bank, (0, self.frame_length - 1))
 #         ZERO_PADED_WINDOWED_LINEAR_PHASE_FR_BANK = torch.rfft(zero_paded_windowed_linear_phase_ir_bank, 1)
         ZERO_PADED_WINDOWED_LINEAR_PHASE_FR_BANK = torch.fft.rfft(zero_paded_windowed_linear_phase_ir_bank)
+        ZERO_PADED_WINDOWED_LINEAR_PHASE_FR_BANK = torch.view_as_real(ZERO_PADED_WINDOWED_LINEAR_PHASE_FR_BANK)
         
         # Generate white noise & zero pad & DFT for linear convolution.
         noise = torch.rand(batch_num, frame_num, self.frame_length, dtype = torch.float32).view(-1, self.frame_length).to(self.device) * 2 - 1
