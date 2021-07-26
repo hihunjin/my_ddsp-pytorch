@@ -24,7 +24,7 @@ parser.add_argument("--input", default=".wav")
 parser.add_argument("--output", default="output.wav")
 parser.add_argument("--ckpt", default=".pth")
 parser.add_argument("--config", default=".yaml")
-parser.add_argument("--wave_length", type=int, default=16000)
+parser.add_argument("--wave_length", type=int, default=0)
 args = parser.parse_args()
 
 y, sr = torchaudio.load(args.input, num_frames=None if args.wave_length == 0 else args.wave_length)
