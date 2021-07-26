@@ -46,6 +46,11 @@ print("Network Loaded")
 recon = net.reconstruction(y)
 
 dereverb = recon["audio_synth"].cpu()
+
+## custom scaling
+scl = y.max()-y.min()
+dereverb = (dereverb-dereverb.min())*scl/(dereverb.max()-dereverb.min())+dereverb.min()
+
 dereverb = dereverb.unsqueeze(0)
 torchaudio.save(
     os.path.splitext(args.output)[0] + "_synth.wav", dereverb, sample_rate=config.sample_rate
