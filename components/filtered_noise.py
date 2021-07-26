@@ -43,6 +43,7 @@ class FilteredNoise(nn.Module):
         ZERO_PHASE_FR_BANK[..., 1] = 0
         ZERO_PHASE_FR_BANK = ZERO_PHASE_FR_BANK.view(-1, filter_coeff_length, 2)
 #         zero_phase_ir_bank = torch.irfft(ZERO_PHASE_FR_BANK, 1, signal_sizes = (filter_coeff_length * 2 - 1,))
+        ZERO_PHASE_FR_BANK = torch.view_as_complex(ZERO_PHASE_FR_BANK)
         zero_phase_ir_bank = torch.fft.irfft(ZERO_PHASE_FR_BANK)
            
         # Make linear phase causal impulse response & Hann-window it.
