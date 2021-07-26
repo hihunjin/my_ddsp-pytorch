@@ -78,7 +78,10 @@ class TrainableFIRReverb(nn.Module):
         )
         zero_pad_final_fir = nn.functional.pad(final_fir, (0, input_signal.shape[-1] - 1))
 
-        FIR = torch.rfft(zero_pad_final_fir, 1)
+#         FIR = torch.rfft(zero_pad_final_fir, 1)
+        FIR = torch.fft.rfft(zero_pad_final_fir)
+        FIR = torch.view_as_real(FIR)
+    
 
         # Convolve and inverse FFT to get original signal.
         OUTPUT_SIGNAL = torch.zeros_like(INPUT_SIGNAL).to(self.device)
