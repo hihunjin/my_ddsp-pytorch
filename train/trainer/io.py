@@ -113,6 +113,8 @@ def setup(
         logpath = os.path.join(autolog_dir, dt)
 
     os.makedirs(os.path.dirname(logpath), exist_ok=True)
+    print(logpath)
+    import pdb;pdb.set_trace()
 
     if args is not None:
         conf = OmegaConf.create(args.__dict__)
