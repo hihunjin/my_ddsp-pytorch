@@ -20,7 +20,7 @@ n_freq: 65
 n_harmonics: 101
 n_mels: 128
 n_mfcc: 30
-num_step: 100000
+num_step: 1000
 num_workers: 4
 optimizer: radam
 resume: false
@@ -32,6 +32,6 @@ train: ../data/bird/
 use_reverb: true
 use_z: false
 valid_waveform_sec: 12
-validation_interval: 1000
+validation_interval: 100
 waveform_sec: 1
 z_units: 16
