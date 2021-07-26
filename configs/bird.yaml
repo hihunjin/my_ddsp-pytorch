@@ -27,8 +27,8 @@ resume: false
 sample_rate: 16000
 seed: 940513
 tensorboard_dir: ../tensorboard_log/
-test: ../data/violin/test/
-train: ../data/violin/train/
+test: ../data/bird/
+train: ../data/bird/
 use_reverb: true
 use_z: false
 valid_waveform_sec: 12
