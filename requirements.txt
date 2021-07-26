@@ -4,6 +4,7 @@ tqdm
 tensorboardX
 easydict
 omegaconf
+torchaudio
+hmmlearn
 #torch
-#torchaudio
 #torchvision
