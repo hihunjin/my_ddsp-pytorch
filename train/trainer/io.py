@@ -113,13 +113,13 @@ def setup(
         logpath = os.path.join(autolog_dir, dt)
 
     os.makedirs(os.path.dirname(logpath), exist_ok=True)
-    print(logpath)
-    import pdb;pdb.set_trace()
 
     if args is not None:
-        conf = OmegaConf.create(args.__dict__)
-        conf.save(logpath[:-4] + ".yaml")
-        conf.save(args.ckpt + ".yaml")
+#         conf = OmegaConf.create(args.__dict__)
+#         conf.save(logpath[:-4] + ".yaml")
+        OmegaConf.save(args.__dict__, logpath[:-4] + ".yaml")
+#         conf.save(args.ckpt + ".yaml")
+        OmegaConf.save(args.__dict__, args.ckpt + ".yaml")
 
     if autolog:
         fp = open(logpath, "w")
