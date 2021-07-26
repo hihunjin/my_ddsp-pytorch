@@ -15,7 +15,7 @@
 1. Clone this repository
 
 ```bash
-git clone https://github.com/sweetcocoa/ddsp-pytorch
+git clone https://github.com/hihunjin/my_ddsp-pytorch
 ```
 
 2. Prepare your own audio data. (wav, mp3, flac.. )
@@ -62,10 +62,5 @@ cd train;python test.py  --input ../magenta_mine_original.wav --output output.wa
 
 ## Download pretrained weight file ###
 > [download](https://github.com/sweetcocoa/ddsp-pytorch/raw/models/weight.zip)
-
-## Contact ##
-
-- Jongho Choi (sweetcocoa@snu.ac.kr, BS Student @ Seoul National Univ.)
-- Sungho Lee (dlfqhsdugod1106@gmail.com, BS Student @ Postech.)
 
 > Equally contributed.
