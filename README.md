@@ -56,6 +56,10 @@ python test.py\
 --wave_length 16000
 ```
 
+```bash
+cd train;python test.py  --input ../magenta_mine_original.wav --output output.wav --ckpt ../weight/200220.pth --config ../weight/200220.pth.yaml --wave_length 16000
+```
+
 ## Download pretrained weight file ###
 > [download](https://github.com/sweetcocoa/ddsp-pytorch/raw/models/weight.zip)
 
