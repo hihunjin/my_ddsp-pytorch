@@ -59,6 +59,7 @@ class FilteredNoise(nn.Module):
         zero_paded_noise = nn.functional.pad(noise, (0, filter_coeff_length * 2 - 2))
 #         ZERO_PADED_NOISE = torch.rfft(zero_paded_noise, 1)
         ZERO_PADED_NOISE = torch.fft.rfft(zero_paded_noise)
+        ZERO_PADED_NOISE = torch.view_as_real(ZERO_PADED_NOISE)
 
         # Convolve & IDFT to make filtered noise frame, for each frame, noise band, and batch.
         FILTERED_NOISE = torch.zeros_like(ZERO_PADED_NOISE).to(self.device)
@@ -67,6 +68,7 @@ class FilteredNoise(nn.Module):
         FILTERED_NOISE[:, :, 1] = ZERO_PADED_NOISE[:, :, 0] * ZERO_PADED_WINDOWED_LINEAR_PHASE_FR_BANK[:, :, 1] \
             + ZERO_PADED_NOISE[:, :, 1] * ZERO_PADED_WINDOWED_LINEAR_PHASE_FR_BANK[:, :, 0]
 #         filtered_noise = torch.irfft(FILTERED_NOISE, 1).view(batch_num, frame_num, -1) * self.attenuate_gain         
+        FILTERED_NOISE = torch.view_as_complex(FILTERED_NOISE)
         filtered_noise = torch.fft.irfft(FILTERED_NOISE).view(batch_num, frame_num, -1) * self.attenuate_gain         
                 
         # Overlap-add to build time-varying filtered noise.
