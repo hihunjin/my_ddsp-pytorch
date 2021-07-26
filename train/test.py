@@ -57,7 +57,7 @@ torchaudio.save(
 )
 
 if config.use_reverb:
-    recon_add_reverb = recon["audio_reverb"].cpu()
+    recon_add_reverb = recon["audio_reverb"].cpu().unsqueeze(0)
     torchaudio.save(
         os.path.splitext(args.output)[0] + "_reverb.wav",
         recon_add_reverb,
