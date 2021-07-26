@@ -26,7 +26,7 @@ class ConvBlock(nn.Module):
         x = self.conv2d(x)
         x = self.relu(x)
         x = self.bn(x)
-        x = self.pool(x)
+        x = self.pool(x)        #torch.max_pool2d(x, kernel_size=(2, 1))
         x = self.dropout(x)
         return x
 
