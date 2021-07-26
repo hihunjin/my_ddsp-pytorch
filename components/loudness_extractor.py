@@ -75,8 +75,8 @@ class LoudnessExtractor(nn.Module):
         
         input_signal = z['audio']
         paded_input_signal = nn.functional.pad(input_signal, (self.frame_length * 2, self.frame_length * 2))
-        sliced_signal = paded_input_signal.unfold(1, self.n_fft, self.frame_length)
-        sliced_windowed_signal = sliced_signal * self.smoothing_window
+        sliced_signal = paded_input_signal.unfold(1, self.n_fft, self.frame_length)     # torch.Size([1, 250, 320])
+        sliced_windowed_signal = sliced_signal * self.smoothing_window                  # torch.Size([1, 250, 320])
         
         SLICED_SIGNAL = torch.rfft(sliced_windowed_signal, 1, onesided = False)
         
