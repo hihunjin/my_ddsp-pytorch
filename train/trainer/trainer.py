@@ -328,8 +328,6 @@ class Trainer:
             if self.config["is_data_dict"]:
                 outputs = self.net(batch_dict)
                 if not only_inference:
-                    print('outputs',outputs.size())
-                    print('batch_dict',batch_dict.size())
                     loss = self.criterion(outputs, batch_dict)
             else:
                 outputs = self.net(*batch_x)
