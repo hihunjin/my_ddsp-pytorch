@@ -123,7 +123,7 @@ train_dataset = SupervisedAudioData(
     waveform_sec=config.waveform_sec,
     frame_resolution=config.frame_resolution,
 )
-print('train_dataset', train_dataset[0].size())
+print('train_dataset', train_dataset[0]['audio'].size())
 
 valid_dataset = SupervisedAudioData(
     sample_rate=config.sample_rate,
