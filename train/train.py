@@ -140,7 +140,7 @@ train_dataloader = DataLoader(
     batch_size=config.batch_size,
     shuffle=True,
     num_workers=config.num_workers,
-    pin_memory=True,
+    pin_memory=False,
 )
 
 valid_dataloader = DataLoader(
