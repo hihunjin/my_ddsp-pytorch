@@ -87,7 +87,7 @@ class SupervisedAudioData(AudioData):
         # waveform_to = waveform_from + self.num_wave
 
         audio, sr = torchaudio.load(
-            self.paths[file_idx], offset=waveform_from, num_frames=self.num_wave
+            self.paths[file_idx], frame_offset=waveform_from, num_frames=self.num_wave
         )
         audio = audio[0]
         assert sr == self.sample_rate
