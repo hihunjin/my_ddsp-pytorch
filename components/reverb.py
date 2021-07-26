@@ -51,7 +51,8 @@ class TrainableFIRReverb(nn.Module):
         # Appropriate zero padding is required for linear convolution.
         input_signal = z["audio_synth"]
         zero_pad_input_signal = nn.functional.pad(input_signal, (0, self.fir.shape[-1] - 1))
-        INPUT_SIGNAL = torch.rfft(zero_pad_input_signal, 1)
+#         INPUT_SIGNAL = torch.rfft(zero_pad_input_signal, 1)
+        INPUT_SIGNAL = torch.fft.rfft(zero_pad_input_signal)
 
         # Build decaying impulse response and send it to frequency domain.
         # Appropriate zero padding is required for linear convolution.
@@ -88,6 +89,8 @@ class TrainableFIRReverb(nn.Module):
             INPUT_SIGNAL[:, :, 0] * FIR[:, :, 1] + INPUT_SIGNAL[:, :, 1] * FIR[:, :, 0]
         )
 
-        output_signal = torch.irfft(OUTPUT_SIGNAL, 1)
+#         output_signal = torch.irfft(OUTPUT_SIGNAL, 1)
+        output_signal = torch.fft.irfft(OUTPUT_SIGNAL)
+        
 
         return output_signal
