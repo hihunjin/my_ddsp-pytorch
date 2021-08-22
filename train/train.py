@@ -27,7 +27,7 @@ $ python train.py --batch_size 64 --lr 0.01 --use_reverb
 # parser = argparse.ArgumentParser()
 # parser.add_argument('-c', '--config', type=str)
 # args = parser.parse_args()
-yaml_path = sys.argv[2]#args.config         # ../configs/violin.yaml | ../configs/bird.yaml
+yaml_path = sys.argv[1]#args.config         # ../configs/violin.yaml | ../configs/bird.yaml
 
 config = setup(default_config= yaml_path)
 # config = setup(pdb_on_error=True, trace=False, autolog=False, default_config=dict(
