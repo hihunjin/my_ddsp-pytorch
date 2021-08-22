@@ -38,7 +38,7 @@ def get_args(default_config: dict):
     if args.config != '':
         loaded_config = OmegaConf.load(args.config)
         for i in loaded_config.keys():
-            args[i] = loaded_config[i]
+            setattr(args,i,loaded_config[i])
 
     if args.gpu and "gpu" in default_config.keys():
         # Default argument로 gpu를 줬다면 이렇게 세팅
