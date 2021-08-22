@@ -17,17 +17,17 @@ from network.autoencoder.autoencoder import AutoEncoder
 from loss.mss_loss import MSSLoss
 from optimizer.radam import RAdam
 
-import argparse
+# import argparse
 
 """
 "setup" allows you to OVERRIDE the config through command line interface
 - for example
 $ python train.py --batch_size 64 --lr 0.01 --use_reverb
 """
-parser = argparse.ArgumentParser()
-parser.add_argument('-c', '--config', type=str)
-args = parser.parse_args()
-yaml_path = args.config         # ../configs/violin.yaml | ../configs/bird.yaml
+# parser = argparse.ArgumentParser()
+# parser.add_argument('-c', '--config', type=str)
+# args = parser.parse_args()
+yaml_path = sys.argv[2]#args.config         # ../configs/violin.yaml | ../configs/bird.yaml
 
 config = setup(default_config= yaml_path)
 # config = setup(pdb_on_error=True, trace=False, autolog=False, default_config=dict(
