@@ -3,6 +3,7 @@ import torch.nn as nn
 import torchaudio
 from omegaconf import OmegaConf
 import sys, os, tqdm, glob
+yaml_path = sys.argv[1]
 import numpy as np
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)) + "/../")
@@ -27,7 +28,7 @@ $ python train.py --batch_size 64 --lr 0.01 --use_reverb
 # parser = argparse.ArgumentParser()
 # parser.add_argument('-c', '--config', type=str)
 # args = parser.parse_args()
-yaml_path = sys.argv[1]#args.config         # ../configs/violin.yaml | ../configs/bird.yaml
+# yaml_path = sys.argv[1]#args.config         # ../configs/violin.yaml | ../configs/bird.yaml
 
 config = setup(default_config= yaml_path)
 # config = setup(pdb_on_error=True, trace=False, autolog=False, default_config=dict(
