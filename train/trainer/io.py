@@ -18,6 +18,7 @@ def get_args(default_config: dict):
     import argparse
 
     parser = argparse.ArgumentParser()
+    parser.add_argument('-c','--config',type=str, default='')
 
     if not "gpu" in default_config.keys():
         parser.add_argument(f"--gpu", default=None, help="CUDA visible devices : default:None")
@@ -33,6 +34,11 @@ def get_args(default_config: dict):
         else:
             parser.add_argument(f"--{k}", default=v, help=f"{k} : default:{v}")
     args = parser.parse_args()
+    
+    if args.config != '':
+        loaded_config = OmegaConf.load(args.config)
+        for i in loaded_config.keys():
+            args[i] = loaded_config[i]
 
     if args.gpu and "gpu" in default_config.keys():
         # Default argument로 gpu를 줬다면 이렇게 세팅
