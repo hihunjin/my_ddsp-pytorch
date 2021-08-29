@@ -134,6 +134,7 @@ class Decoder(nn.Module):
         if self.config.use_z:
             latent = torch.cat((latent_f0, latent_z, latent_loudness), dim=-1)
         else:
+            latent_loudness = latent_loudness[:1]
             latent = torch.cat((latent_f0, latent_loudness), dim=-1)
 
         latent, (h) = self.gru(latent)
