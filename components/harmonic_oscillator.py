@@ -58,6 +58,7 @@ class HarmonicOscillator(nn.Module):
 
         # Upsample frequency envelopes and build phase bank
         audiorate_f0_bank = self.framerate_to_audiorate(framerate_f0_bank)
+        print('hi',audiorate_f0_bank.size())
         audiorate_phase_bank = torch.cumsum(audiorate_f0_bank / self.sr, 2)
 
         # Upsample amplitude envelopes
