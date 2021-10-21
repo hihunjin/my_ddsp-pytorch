@@ -66,6 +66,8 @@ class AutoEncoder(nn.Module):
 
         harmonic = self.harmonic_oscillator(latent)
         noise = self.filtered_noise(latent)
+        if 'noise_scale' in vars(config):
+            noise /= config.noise_scale
 
         audio = dict(
             harmonic=harmonic, noise=noise, audio_synth=harmonic + noise[:, : harmonic.shape[-1]]
